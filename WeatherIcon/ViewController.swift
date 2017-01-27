@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import SwiftOpenWeatherMapAPI
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let weatherAPI = WAPIManager(apiKey: "9eeaea80076ac9f4b5f19ec445d707f3", temperatureFormat: .Celsius, lang: .English)
+        
+        weatherAPI.currentWeatherByCityNameAsJson(cityName: "London") { (result) -> Void in
+            print(result)
+        }
     }
 
     override func didReceiveMemoryWarning() {
