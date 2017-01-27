@@ -18,7 +18,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLocationManager()
+    }
 
+    private func setupLocationManager() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -27,7 +30,7 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
 
-    func updateIcon(coordinate: CLLocationCoordinate2D) {
+    fileprivate func updateIcon(coordinate: CLLocationCoordinate2D) {
         let weatherAPI = WAPIManager(apiKey: "9eeaea80076ac9f4b5f19ec445d707f3", temperatureFormat: .Celsius, lang: .English)
         weatherAPI.currentWeatherByCoordinatesAsJson(coordinates: coordinate) {
             (WeatherResult) -> Void in
